@@ -9,8 +9,6 @@ import InfoBox from "./InfoBox";
 import { useMainContext } from "./Hooks";
 
 
-
-
 const Marker = ({ children }) => children;
 
 export default function GoogMap() {
