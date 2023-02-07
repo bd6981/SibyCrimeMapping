@@ -9,6 +9,9 @@ import InfoBox from "./InfoBox";
 import { useMainContext } from "./Hooks";
 
 
+
+
+
 const Marker = ({ children }) => children;
 
 export default function GoogMap() {
@@ -75,11 +78,11 @@ export default function GoogMap() {
   });
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "70vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyD2zMgWcSv5eO8fjUWF4b_hcbT6DPKc--A" }}
         defaultCenter={{ lat: 33.716073, lng: -84.353217 }}
-        defaultZoom={10}
+        defaultZoom={12}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;

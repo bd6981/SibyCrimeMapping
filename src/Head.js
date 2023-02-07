@@ -3,17 +3,18 @@ import './Header.css'
 import myImage from './img1.png'
 import {Image} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-
-const Header = () => {
+import Search from './Search.js'
+const Head = () => {
   return (
     <div className="header">
       <header>
-        <Image
-          src={myImage}
-          style={{ height: "18vh", width: "18vw", textAlign: "center" }}
-        />
+        
+        
       </header>
+      
     </div>
   );
 }
-export default Header
+export default Head
+
+//https://ant.design/components/date-picker

@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.css";
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
-const Footer = () => {
+const Foot = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -22,4 +22,4 @@ const Footer = () => {
     </footer>
   );
 };
-export default Footer;
+export default Foot;
