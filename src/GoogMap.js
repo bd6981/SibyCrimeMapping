@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import useSwr from "swr";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./Map.css";
