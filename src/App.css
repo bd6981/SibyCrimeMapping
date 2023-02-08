@@ -12,7 +12,9 @@
   
  
 }
-
+#components-grid-demo-flex [class~='ant-row'] {
+  background: rgba(128, 128, 128, 0.08);
+}
 .item1{
     border: none;
     background-color: inherit;

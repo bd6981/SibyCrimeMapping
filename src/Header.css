@@ -62,6 +62,7 @@ a{
     height: 3rem;
     display: grid;
     grid-template-columns: 6fr .5fr 6fr 8fr;
+    
     color: purple;
     grid-template-areas: footer; 
     position: fixed;
