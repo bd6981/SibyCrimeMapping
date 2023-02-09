@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "zimonitrome.color-blocks"
+        "zimonitrome.color-blocks",
+        "mblode.pretty-formatter"
     ]
 }

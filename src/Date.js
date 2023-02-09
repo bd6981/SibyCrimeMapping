@@ -20,6 +20,8 @@ const Date = () => {
     }
   };
   return (
+    <>
+    <header>Search Crimes By Date:</header>
     <RangePicker
       value={dates || value}
       disabledDate={disabledDate}
@@ -27,6 +29,7 @@ const Date = () => {
       onChange={(val) => setValue(val)}
       onOpenChange={onOpenChange}
     />
+    </>
   );
 };
 export default Date;

@@ -1,4 +1,11 @@
 {
     "color-blocks.wrapText.enabled": true,
-    "color-blocks.commentLine.largeText": true
+    "color-blocks.commentLine.largeText": true,
+    "pretty-formatter.braces": true,
+    "pretty-formatter.bracePadding": true,
+    "pretty-formatter.braceLine": true,
+    "editor.formatOnPaste": true,
+    "prettier.eslintIntegration": true,
+    "prettier.stylelintIntegration": true,
+    "prettier.tslintIntegration": true
 }

@@ -87,3 +87,7 @@ header{
     transform: rotate(360deg);
   }
 }
+.iconClick .custom{
+    height: 2vh;
+    width: 2vw;
+}

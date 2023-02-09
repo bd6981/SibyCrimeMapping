@@ -10,6 +10,7 @@ import Intro from "./Intro"
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
 import Date from "./Date.js"
+import Search from './Search.js'
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -72,6 +73,7 @@ const App = () => {
              theme="dark"
           >
             <Date />
+            <Search/>
             
           </Sider >
           <Content
