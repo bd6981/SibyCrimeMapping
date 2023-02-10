@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import myImage from './img1.png'
 import Head from "./Head";
 import GoogMap from "./GoogMap";
@@ -11,6 +11,8 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
 import Date from "./Date.js"
 import Search from './Search.js'
+import crimes from "./data.json";
+import { useMainContext } from './Hooks';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -27,6 +29,33 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 });
 
 const App = () => {
+    const mapRef = useRef();
+    const [bounds, setBounds] = useState(null);
+    const [zoom, setZoom] = useState(10);
+    const [infoBox, setInfoBox] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [renderCrime, setRenderCrime] = useState([]);
+    const { setCrimeData, reRenderMarkers } = useMainContext();
+    // useEffect(() => {
+    //   const fetchCrimes = async () => {
+    //     setLoading(true);
+    //     const res = await fetch("./data.json");
+    //     if (res.ok) {
+    //       const { crime } = await res.json();
+    //     }
+    //     setCrimeData( crimes);
+    //     setRenderCrime( crimes);
+    //     setLoading(false);
+    //   };
+
+    //   fetchCrimes(crimes);
+    // }, []);
+  useEffect(() => {
+    if (reRenderMarkers !== null) {
+      setRenderCrime(reRenderMarkers)
+    }
+  }, reRenderMarkers)
+  
   const {
     token: { colorBgContainer },
   } = theme.useToken();
