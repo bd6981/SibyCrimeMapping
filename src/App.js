@@ -36,20 +36,21 @@ const App = () => {
     const [loading, setLoading] = useState(false);
     const [renderCrime, setRenderCrime] = useState([]);
     const { setCrimeData, reRenderMarkers } = useMainContext();
-    // useEffect(() => {
-    //   const fetchCrimes = async () => {
-    //     setLoading(true);
-    //     const res = await fetch("./data.json");
-    //     if (res.ok) {
-    //       const { crime } = await res.json();
-    //     }
-    //     setCrimeData( crimes);
-    //     setRenderCrime( crimes);
-    //     setLoading(false);
-    //   };
+    useEffect(() => {
+      const fetchCrimes = async () => {
+        setLoading(true);
+        const res = await fetch("./data.json");
+        if (res.ok) {
+          const { crimes} = await res.json();
+        }
+        setCrimeData( crimes);
+        setRenderCrime( crimes);
+        setLoading(false);
+      };
 
-    //   fetchCrimes(crimes);
-    // }, []);
+      fetchCrimes(crimes);
+    }, []);
+
   useEffect(() => {
     if (reRenderMarkers !== null) {
       setRenderCrime(reRenderMarkers)
@@ -101,7 +102,7 @@ const App = () => {
             width={250}
              theme="dark"
           >
-            <Date />
+           
             <Search/>
             
           </Sider >
@@ -112,7 +113,8 @@ const App = () => {
             }}
              theme="dark"
           >
-            <GoogMap/>
+            <GoogMap crimeData={renderCrime} />
+            
           </Content>
         </Layout>
       </Content>

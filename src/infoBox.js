@@ -12,11 +12,11 @@ const InfoBox = ({ info }) => {
           <p>
             CRIME: <strong>{info.description}</strong>
           </p>
-          {/* <p>
-            CODE: <strong>{info.code}</strong>
-          </p> */}
           <p>
-            ID: <strong>{info.id}</strong>
+            CODE: <strong>{info.code}</strong>
+          </p>
+          <p>
+            ID: <strong>{info.reportNum}</strong>
           </p>
           <p>
             DATE: <strong>{info.reportDate}</strong>

@@ -2,11 +2,12 @@ import { AudioOutlined } from "@ant-design/icons";
 import { Input, Space } from "antd";
 import React, { useRef, useState, useEffect } from "react";
 import { useMainContext } from "./Hooks.js";
-
+import './Map.css'
 function Search(crime) {
   const [storeSelection, setStoreSelection] = useState("All");
   const { crimeData, setSelectionCrime, setReRenderMarkers } = useMainContext();
   const [matchCrime, setMatchCrime] = useState(crimeData);
+
   const searchBox = useRef();
   const optionBox = useRef();
 
@@ -21,7 +22,8 @@ function Search(crime) {
     };
   const userSearch = (searchQuery, crimeData) => {
     let crimeMatch = [];
-let filteredCrimeData = filterCrimeData(crimeData)
+    let filteredCrimeData = filterCrimeData(crimeData)
+    
     if (searchQuery.length > 0 && crimeData) {
       for (const crime in crimeData) {
         let crimeTitle = crimeData[crime].title.toLowerCase();
@@ -30,7 +32,7 @@ let filteredCrimeData = filterCrimeData(crimeData)
         }
       }
       if (crimeMatch.length === 0) {
-        crimeMatch = [{ title: "no results", properties: [{ title: "" }] }];
+        crimeMatch = [{ title: "no results", properties: [{ title: " "}] }];
       }
       setMatchCrime(crimeMatch);
     } else {
@@ -45,12 +47,13 @@ let filteredCrimeData = filterCrimeData(crimeData)
 
   },
     [storeSelection])
-
+ console.log(userSearch);
   return (
     <>
-      <section>
+      <section className="search-container">
         <header>Select Crimes By Type:</header>
         <select
+          className="option-container"
           ref={optionBox}
           onChange={() => {
             setStoreSelection(optionBox.current.value);
@@ -133,10 +136,11 @@ let filteredCrimeData = filterCrimeData(crimeData)
           <option value="Animal Cruelty"> Animal Cruelty</option>
         </select>
       </section>
-      <section>
+      <section className="search-container">
         <p>Search</p>
         <input
           type="text"
+          ref={searchBox}
           onKeyUp={() => {
             let searchQuery = searchBox.current.value.toLowerCase();
             setTimeout(() => {
@@ -148,19 +152,18 @@ let filteredCrimeData = filterCrimeData(crimeData)
           ref={searchBox}
         />
       </section>
-      <table className="table">
+      <table className="search-table">
         <tr>
-          <th style={{ width: "60%", placeholder: "Title" }} />
-          <th style={{placeholder: "Crime" }} />
-          <th style={{ placeholder: "Location" }} />
+          <th style={{ width: "60%" }}>Title</th>
+          <th style={{ width: "50%" }}>Location</th>
+          <th style={{ width: "80%" }}>Date</th>
         </tr>
-        {matchCrime.map((ev) => {
+        {matchCrime.map(ev => {
           return (
-            <tr >
-              <td>{}</td>
-              <td>{}</td>
-             
-              <td>
+            <tr key={ev.id} >
+              <td>{ev.title}</td>
+              <td>{ev.title}</td>
+              {ev.title ? <td>
                 <a
                   href="#"
                   onClick={() => {
@@ -168,11 +171,12 @@ let filteredCrimeData = filterCrimeData(crimeData)
                   }}>
                   click!
                 </a>
-              </td>
+              </td> : <td></td>}
             </tr>
           );
         })}
       </table>
+      console.log(ev.title)
     </>
   );
 }

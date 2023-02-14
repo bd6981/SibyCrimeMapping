@@ -8,13 +8,15 @@ import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
 import InfoBox from "./InfoBox";
 import { useMainContext } from "./Hooks";
 import LocateMarker from './LocateMarker.js'
+import Date from "./Date.js";
+import Search from "./Search.js";
 
 
 
 
 const Marker = ({ children }) => children;
 
-export default function GoogMap() {
+export default function GoogMap(center, crimeData, lat, lng) {
   const { selectedCrime } = useMainContext();
   const mapRef = useRef();
   const [bounds, setBounds] = useState(null);
@@ -24,59 +26,45 @@ export default function GoogMap() {
   const [renderCrime, setRenderCrime] = useState([]);
   const { setCrimeData, reRenderMarkers } = useMainContext();
 
-  const eventDataIndex = {
-    "09A": "Murder & Nonnegligent Manslaughter",
-    100: "Kidnapping/Abduction",
-    "11A": "Rape",
-    "11B": "Sodomy",
-    "11D": "Fondling",
-    120: "Robbery",
+  const crimeDataIndex = {
+    '09A': "Murder & Nonnegligent Manslaughter",
+    '100': "Kidnapping/Abduction",
+    '11A': "Rape",
+    '11B': "Sodomy",
+    '11D': "Fondling",
+    '120': "Robbery",
     "13A": "Aggravated Assault",
     "13B": "Simple Assault",
     "13C": "Intimidation",
-    220: "Burglary/Breaking & Entering",
+    '220': "Burglary/Breaking & Entering",
     "23C": "Shoplifting",
     "23D": "Theft From Building",
     "23E": "Theft From Coin-Operated Machine or Device",
     "23F": "Theft From Motor Vehicle",
     "23G": "Theft of Motor Vehicle Parts or Accessories",
     "23H": "All Other Larceny",
-    240: "Motor Vehicle Theft",
-    250: "Counterfeiting/Forgery",
+    '240': "Motor Vehicle Theft",
+    '250': "Counterfeiting/Forgery",
     "26A": "False Pretenses/Swindle/Confidence Game",
     "26B": "Credit Card/Automated Teller Machine Fraud",
     "26C": "Impersonation",
     "26D": "Welfare Fraud",
     "26E": "Wire Fraud",
     "26F": "Identity theft",
-    270: "Embezzlement",
-    280: "Stolen Property Offenses",
-    290: "Destruction/Damage/Vandalism of Property",
+    '270': "Embezzlement",
+    '280': "Stolen Property Offenses",
+    '290': "Destruction/Damage/Vandalism of Property",
     "35A": "Drug/Narcotic Violations",
     "35B": "Drug Equipment Violations",
     "39B": "Operating/Promoting/Assisting Gambling",
-    370: "Pornography/Obscene Material",
-    520: "Weapon Law Violations",
-    720: "Animal Cruelty",
+    '370': "Pornography/Obscene Material",
+    '520': "Weapon Law Violations",
+    '720': "Animal Cruelty",
   };
   //array of keys
-  let eventDataIndexNum = Object.keys(eventDataIndex);
-  eventDataIndexNum = eventDataIndexNum.map((index) => Number(index));
-
-  useEffect(() => {
-    const fetchCrimes = async () => {
-      setLoading(true);
-      const res = await fetch("./data.json");
-      if (res.ok) {
-        const { crime } = await res.json();
-      }
-      setCrimeData( crimes);
-      setRenderCrime( crimes);
-      setLoading(false);
-    };
-
-    fetchCrimes(crimes);
-  }, []);
+  let crimeDataIndexNum = Object.keys(crimeDataIndex);
+  crimeDataIndexNum = crimeDataIndexNum.map((index) => Number(index));
+  // console.log(crimeDataIndex)
 
   //geo feature
   const points = crimes.map((crime) => ({
@@ -120,9 +108,9 @@ export default function GoogMap() {
     }
   }, [selectedCrime]);
   return (
-    <div style={{ height: "70vh", width: "100%" }}>
+    <div style={{ height: "60vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_KEY }}
+        bootstrapURLKeys={{ key: "AIzaSyD2zMgWcSv5eO8fjUWF4b_hcbT6DPKc--A" }}
         defaultCenter={{ lat: 33.716073, lng: -84.353217 }}
         defaultZoom={12}
         yesIWantToUseGoogleMapApiInternals
@@ -148,7 +136,7 @@ export default function GoogMap() {
           const [longitude, latitude] = cluster.geometry.coordinates;
           const { cluster: isCluster, point_count: pointCount } =
             cluster.properties;
-
+          const clusterId = cluster.properties.crimeCode
           if (isCluster) {
             return (
               <Marker
@@ -174,42 +162,36 @@ export default function GoogMap() {
               </Marker>
             );
           }
+        
+          if (crimeDataIndexNum.indexOf(clusterId) !== -1 && cluster.geometry.coordinates.length === 2) {
+          }
 
           return (
-            <Marker>
-              <LocateMarker
-                key={`crime-${cluster.properties.crimeId}`}
-                lat={latitude}
-                lng={longitude}>
-                <Icon icon={peopleRobbery} />
-                <button
-                  className="crime-marker"
-                  onClick={() => {
-                    setInfoBox({
-                      id: cluster.properties.crimeId,
-                      code: cluster.properties.crimeCode,
-                      description: cluster.properties.crimeTitle,
-                      reportDate: cluster.properties.crimeDate,
-                      offenseDate: cluster.properties.crimeOffenseDate,
-                      day: cluster.properties.crimeDay,
-                      location: cluster.properties.location,
-                      locationType: cluster.properties.crimeLocationType,
-                      neighborhood: cluster.properties.crimeNeighborhood,
-                      victim: cluster.properties.crimeVictims,
-                      crimeAgainst: cluster.properties.crimeCrime_against,
-                      firearm: cluster.properties.crimeFirearm,
-                      press: cluster.properties.crimePress,
-                      social: cluster.properties.crimeSocial,
-                    });
-                  }}>
-                  <Icon icon={peopleRobbery} />
-                </button>
-              </LocateMarker>
-            </Marker>
-          );
-        })}
+            <LocateMarker
+              lat={latitude}
+              lng={longitude}
+              id={clusterId}
+              key={cluster.properties.crimeId}
+              onClick=
+              {() => {
+                setInfoBox({
+                  code: cluster.properties.crimeCode,
+                  id: cluster.properties.crimeId,
+                  description: cluster.properties.crimeTitle,
+                });
+              }} />
+                
+        )
+            
+          })
+          
+          }
+        
+        
       </GoogleMapReact>
       {infoBox && <InfoBox className="infoBox" info={infoBox}></InfoBox>}
+        
     </div>
   );
+
 }

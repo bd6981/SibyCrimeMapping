@@ -37,105 +37,106 @@ import robberMask from '@iconify/icons-mdi/robber-mask';
 import { Icon } from '@iconify/react';
 import './Map.css'
 
-function LocateMarker ({lat, lng, onClick, id, title}) {
+
+function LocateMarker ({lat, lng, onClick, id}) {
     let renderIcon = null;
-    if (id === '09A' || title === 'Murder & Nonnegligent Manslaughter'){ 
+    if (id === '09A' ){ 
         renderIcon = robberMask;
         //;Murder & Nonnegligent Manslaughter
-    }else if (id === '100' || title === 'Kidnapping/Abduction'){
+    }else if (id === 100 ){
         renderIcon = robberMask
         //;Kidnapping/Abduction
-    }else if (id === '11A' || title === 'Rape'){
+    }else if (id === '11A'){
         renderIcon = robberMask
         //;Rape
-    }else if (id === '11B' || title === 'Sodomy'){
+    }else if (id === '11B' ){
         renderIcon = robberMask
         //;Sodomy
-    }else if (id === '11D' || title === 'Fondling '){
+    }else if (id === '11D'){
         renderIcon = robberMask
         //;Fondling 
-    }else if (id === '120' || title === 'Robbery'){
+    }else if (id === '120'){
         renderIcon = robberMask
         //;Robbery
-    }else if (id === '13A' || title === 'Aggravated Assault'){
+    }else if (id === '13A'){
         renderIcon = robberMask
         //;Aggravated Assault
-    }else if (id === '13B' || title === 'Simple Assault'){
+    }else if (id === '13B' ){
         renderIcon = robberMask
         //;Simple Assault
-    }else if (id === '13C' || title === 'Intimidation'){
+    }else if (id === '13C'){
         renderIcon = robberMask
         //;Intimidation
-    }else if (id === '220' || title ==='Burglary/Breaking & Entering' ){
+    }else if (id === '220' ){
         renderIcon = robberMask
         //;Burglary/Breaking & Entering
-    }else if (id === '23C' || title ==='Shoplifting'){
+    }else if (id === '23C'){
         renderIcon = robberMask
         //;Shoplifting
-    }else if (id === '23D' || title === 'Theft From Building'){
+    }else if (id === '23D' ){
         renderIcon = robberMask
         //;Theft From Building
-    }else if (id === '23E' || title === 'Theft From Coin-Operated Machine or Device'){
+    }else if (id === '23E' ){
         renderIcon = robberMask
         //;Theft From Coin-Operated Machine or Device
-    }else if (id === '23F' || title === 'Theft From Motor Vehicle'){
+    }else if (id === '23F' ){
         renderIcon = robberMask
         //;Theft From Motor Vehicle
-    }else if (id === '23G' || title === 'Theft of Motor Vehicle Parts or Accessories'){
+    }else if (id === '23G' ){
         renderIcon = robberMask
         //;Theft of Motor Vehicle Parts or Accessories
-    }else if (id === '23H' || title === 'All Other Larceny'){
+    }else if (id === '23H' ){
         renderIcon = robberMask
         //;All Other Larceny
-    }else if (id === '240' || title === 'Motor Vehicle Theft'){
+    }else if (id === '240'){
         renderIcon = robberMask
         //;Motor Vehicle Theft
-    }else if (id === '250' || title === 'Counterfeiting/Forgery'){
+    }else if (id === '250' ){
         renderIcon = robberMask
         //;Counterfeiting/Forgery
-    }else if (id === '26A' || title === 'False Pretenses/Swindle/Confidence Game'){
+    }else if (id === '26A' ){
         renderIcon = robberMask
         //;False Pretenses/Swindle/Confidence Game
-    }else if (id === '26B' || title === 'Credit Card/Automated Teller Machine Fraud'){
+    }else if (id === '26B' ){
         renderIcon = robberMask
         //;Credit Card/Automated Teller Machine Fraud
-    }else if (id === '26C' || title === 'Impersonation'){
+    }else if (id === '26C' ){
         renderIcon = robberMask
         //;Impersonation
-    }else if (id === '26D' || title === 'Welfare Fraud'){
+    }else if (id === '26D' ){
         renderIcon = robberMask
         //;Welfare Fraud
-    }else if (id === '26E' || title === 'Wire Fraud'){
+    }else if (id === '26E' ){
         renderIcon = robberMask
         //;Wire Fraud
-    }else if (id === '26F' || title === 'Identity theft'){
+    }else if (id === '26F' ){
         renderIcon = robberMask
         //;Identity theft
-    }else if (id === '270' || title === 'Embezzlement' ){
+    }else if (id === '270' ){
         renderIcon = robberMask
         //;Embezzlement
-    }else if (id === '280' || title === " Stolen Property Offenses"){
+    }else if (id === '280'){
         renderIcon = robberMask
         //;Stolen Property Offenses
-    }else if (id === '290' || title === "Destruction/Damage/Vandalism of Property"){
+    }else if (id === '290' ){
         renderIcon = robberMask
         //;Destruction/Damage/Vandalism of Property
-    }else if (id === '35A' || title === "Drug/Narcotic Violations"){
+    }else if (id === '35A' ){
         renderIcon = robberMask
         //;Drug/Narcotic Violations
-    }else if (id === '35B' || title === "Drug Equipment Violations"){
+    }else if (id === '35'){
         renderIcon = robberMask
         //;Drug Equipment Violations
-    }else if (id === '39B' || title === "Operating/Promoting/Assisting Gambling"){
+    }else if (id === '39B' ){
         renderIcon = robberMask
         //;Operating/Promoting/Assisting Gambling
-    }else if (id === '370' || title === "Pornography/Obscene Material"){
+    }else if (id === '370' ){
         renderIcon = robberMask
         //;Pornography/Obscene Material
-    }else if (id === '520' || title === "Weapon Law Violations"){
+    }else if (id === '520' ){
         renderIcon = robberMask
         //;Weapon Law Violations
-    }else if(id === '720' || title === "Animal Cruelty"){
+    }else if(id === '720' ){
         renderIcon = robberMask
         //;Animal Cruelty
     }
