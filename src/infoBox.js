@@ -16,7 +16,7 @@ const InfoBox = ({ info }) => {
             CODE: <strong>{info.code}</strong>
           </p>
           <p>
-            ID: <strong>{info.reportNum}</strong>
+            ID: <strong>{info.id}</strong>
           </p>
           <p>
             DATE: <strong>{info.reportDate}</strong>

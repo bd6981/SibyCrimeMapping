@@ -178,6 +178,17 @@ export default function GoogMap(center, crimeData, lat, lng) {
                   code: cluster.properties.crimeCode,
                   id: cluster.properties.crimeId,
                   description: cluster.properties.crimeTitle,
+                  reportDate: cluster.properties.crimeDate,
+                  offenseDate: cluster.properties.crimeOffenseDate,
+                  location: cluster.properties.crimeLocation,
+                  locationType: cluster.properties.crimeLocationType,
+                  neighborhood: cluster.properties.crimeNeighborhood,
+                  victims: cluster.properties.crimeVictims,
+                  crimeAgainst: cluster.properties.Crime_against,
+                  firearm: cluster.properties.crimeFirearm,
+                  press: cluster.properties.crimePress,
+                  social: cluster.properties.crimeSocial
+    
                 });
               }} />
                 
