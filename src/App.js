@@ -35,7 +35,7 @@ const App = () => {
     const [infoBox, setInfoBox] = useState(null);
     const [loading, setLoading] = useState(false);
     const [renderCrime, setRenderCrime] = useState([]);
-    const { setCrimeData, reRenderMarkers } = useMainContext();
+    const { crimeData, setCrimeData, reRenderMarkers } = useMainContext();
     useEffect(() => {
       const fetchCrimes = async () => {
         setLoading(true);
@@ -113,7 +113,7 @@ const App = () => {
             }}
              theme="dark"
           >
-            <GoogMap crimeData={renderCrime} />
+            <GoogMap crimeData ={renderCrime} />
             
           </Content>
         </Layout>

@@ -21,5 +21,6 @@ export function ContextProvider({ children }) {
     authorized,
     setAuthorized,
   };
+  
   return (<mainContext.Provider value={value}>{children}</mainContext.Provider>)
 }

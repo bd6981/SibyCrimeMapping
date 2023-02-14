@@ -102,7 +102,7 @@ export default function GoogMap(center, crimeData, lat, lng) {
   });
   useEffect(() => {
     if (selectedCrime !== null) {
-      const [longitude, latitude] = selectedCrime.geometry.coordinates;
+      const [longitude, latitude] = selectedCrime.geometry.coordinates[0];
       mapRef.current.panTo({ lat: latitude, lng: longitude });
       mapRef.current.setZoom(10);
     }
@@ -110,9 +110,10 @@ export default function GoogMap(center, crimeData, lat, lng) {
   return (
     <div style={{ height: "60vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyD2zMgWcSv5eO8fjUWF4b_hcbT6DPKc--A" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_KEY }}
         defaultCenter={{ lat: 33.716073, lng: -84.353217 }}
         defaultZoom={12}
+        mapTypeId='satellite'
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
@@ -151,7 +152,7 @@ export default function GoogMap(center, crimeData, lat, lng) {
                   }}
                   onClick={() => {
                     const expansionZoom = Math.min(
-                      supercluster.getClusterExpansionZoom(cluster.title),
+                      supercluster.getClusterExpansionZoom(cluster.code),
                       20
                     );
                     mapRef.current.setZoom(expansionZoom);
