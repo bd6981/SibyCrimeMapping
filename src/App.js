@@ -30,9 +30,6 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const App = () => {
     const mapRef = useRef();
-    const [bounds, setBounds] = useState(null);
-    const [zoom, setZoom] = useState(10);
-    const [infoBox, setInfoBox] = useState(null);
     const [loading, setLoading] = useState(false);
     const [renderCrime, setRenderCrime] = useState([]);
     const { crimeData, setCrimeData, reRenderMarkers } = useMainContext();
@@ -43,13 +40,16 @@ const App = () => {
         if (res.ok) {
           const { crimes} = await res.json();
         }
+       
         setCrimeData( crimes);
         setRenderCrime( crimes);
         setLoading(false);
       };
 
       fetchCrimes(crimes);
+     
     }, []);
+  
 
   useEffect(() => {
     if (reRenderMarkers !== null) {
@@ -113,7 +113,7 @@ const App = () => {
             }}
              theme="dark"
           >
-            <GoogMap crimeData ={renderCrime} />
+            <GoogMap crimeData={ renderCrime } />
             
           </Content>
         </Layout>

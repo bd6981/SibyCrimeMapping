@@ -30,10 +30,10 @@ body {
 }
 .infoBox {
   position: absolute;
-  top: 188px;
+  top: 202px;
   right: 3%;
   width: 400px;
-  min-height: 200px;
+  min-height: 100px;
   padding: 20px;
   /* background-color: black; */
   border-radius: 10px;
@@ -86,50 +86,66 @@ header {
   margin: 10px 0 20px 0;
   display: flex;
   justify-content: center;
+  
 
 }
 .search-container>*{
   display: inline-block;
+  
 
 }
 .search-container p{
   margin: 0 20px 0 20px;
-  font-size: 20px;
+  font-size: 15px;
+  
 }
 
 button , input, select, textarea{
   font-family: inherit;
-  font-size: 20px;
+  font-size: 15px;
 }
 .search-container input[type='text']{
   font-family: inherit;
   outline: none;
-  width: 100%;
+  width: 11vw;
   max-width: 500px;
-  margin: 8px 20px 0 0 ;
+  /* margin: px 0px 5 0 ; */
   padding: 0 0 0 10px;
+  font-size: 15px;
+  align-items: center;
+  height: 5vh;
+  
 
 }
 .search-table{
   margin: 0 auto;
+ margin-top: 50vh;
   table-layout: fixed;
   border-collapse: 100%;
-  width: 100%;
-  max-width: 1000px;
-  text-align: left;
+  width: 95vw;
+  
+  text-align: center;
+  margin-left: .3vw;
 
 }
 .search-table th{
-  background-color: firebrick;
-  color:#308083
+  background-color: rgb(16, 17, 22);
+  color:#e6ecec
+  
 }
 .search-table tr:nth-child(even){
   background-color: #cccccc;
 }
 .search-table th, td{
-  padding: 10px;
+  padding: 15px;
 
 }
 .option-container{
-  width: 10vw;
+  width: 11vw;
+  height: 4vh;
+  text-align: center;
+  border-radius: 2px;
+  border-color: black;
+  
+  
 }

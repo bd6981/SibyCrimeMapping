@@ -6,16 +6,16 @@ export function useMainContext() {
   return useContext(mainContext);
 }
 export function ContextProvider({ children }) {
-  const [crimeData, setCrimeData] = useState([]);
-  const [selectedCrime, setSelectedCrime] = useState(null);
+  const [eventData, setEventData] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
   const [authorized, setAuthorized] = useState(null);
 
   const value = {
-    crimeData,
-    setCrimeData,
-    selectedCrime,
-    setSelectedCrime,
+    eventData,
+    setEventData,
+    selectedEvent,
+    setSelectedEvent,
     reRenderMarkers,
     setReRenderMarkers,
     authorized,

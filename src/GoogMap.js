@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./Map.css";
-import crimes from "./data.json";
+import events from "./data.json";
 import { Icon } from "@iconify/react";
 import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
 import InfoBox from "./InfoBox";
@@ -16,17 +16,16 @@ import Search from "./Search.js";
 
 const Marker = ({ children }) => children;
 
-export default function GoogMap(center, crimeData, lat, lng) {
-  const { selectedCrime } = useMainContext();
+export default function GoogMap(center, eventData, lat, lng) {
+  const { selectedEvent } = useMainContext();
   const mapRef = useRef();
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(10);
   const [infoBox, setInfoBox] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [renderCrime, setRenderCrime] = useState([]);
-  const { setCrimeData, reRenderMarkers } = useMainContext();
 
-  const crimeDataIndex = {
+
+//JSON index
+  const eventDataIndex = {
     '09A': "Murder & Nonnegligent Manslaughter",
     '100': "Kidnapping/Abduction",
     '11A': "Rape",
@@ -62,34 +61,34 @@ export default function GoogMap(center, crimeData, lat, lng) {
     '720': "Animal Cruelty",
   };
   //array of keys
-  let crimeDataIndexNum = Object.keys(crimeDataIndex);
-  crimeDataIndexNum = crimeDataIndexNum.map((index) => Number(index));
-  // console.log(crimeDataIndex)
+  let eventDataIndexNum = Object.keys(eventDataIndex);
+  eventDataIndexNum = eventDataIndexNum.map((index) => Number(index));
+ 
 
   //geo feature
-  const points = crimes.map((crime) => ({
+  const points = events.map((event) => ({
     type: "Feature",
 
     properties: {
       cluster: false,
-      crimeId: crime.report_number,
-      crimeCode: crime.code,
-      crimeTitle: crime.description,
-      crimeDate: crime.report_date,
-      crimeOffenseDate: crime.offense_start,
-      crimeDay: crime.week_day,
-      crimeLocation: crime.location,
-      crimeLocationType: crime.location_type,
-      crimeNeighborhood: crime.neighborhood,
-      crimeVictims: crime.victims,
-      crimeCrime_against: crime.crime_against,
-      crimeFirearm: crime.firearm_involved,
-      crimePress: crime.press,
-      crimeSocial: crime.social,
+      eventId: event.report_number,
+      eventCode: event.code,
+      eventTitle: event.description,
+      eventDate: event.report_date,
+      eventOffenseDate: event.offense_start,
+      eventDay: event.week_day,
+      eventLocation: event.location,
+      eventLocationType: event.location_type,
+      eventNeighborhood: event.neighborhood,
+      eventVictims: event.victims,
+      eventEvent_against: event.event_against,
+      eventFirearm: event.firearm_involved,
+      eventPress: event.press,
+      eventSocial: event.social,
     },
     geometry: {
       type: "Point",
-      coordinates: [parseFloat(crime.longitude), parseFloat(crime.latitude)],
+      coordinates: [parseFloat(event.longitude), parseFloat(event.latitude)],
     },
   }));
 
@@ -100,13 +99,15 @@ export default function GoogMap(center, crimeData, lat, lng) {
     zoom,
     options: { radius: 75, maxZoom: 20 },
   });
+  //called when an a tag is clicked//
   useEffect(() => {
-    if (selectedCrime !== null) {
-      const [longitude, latitude] = selectedCrime.geometry.coordinates[0];
+    if (selectedEvent !== null) {
+      const [longitude, latitude] = selectedEvent.geometry.coordinates;
       mapRef.current.panTo({ lat: latitude, lng: longitude });
       mapRef.current.setZoom(10);
     }
-  }, [selectedCrime]);
+  }, [selectedEvent]);
+
   return (
     <div style={{ height: "60vh", width: "100%" }}>
       <GoogleMapReact
@@ -137,7 +138,7 @@ export default function GoogMap(center, crimeData, lat, lng) {
           const [longitude, latitude] = cluster.geometry.coordinates;
           const { cluster: isCluster, point_count: pointCount } =
             cluster.properties;
-          const clusterId = cluster.properties.crimeCode
+          const clusterId = cluster.properties.eventCode
           if (isCluster) {
             return (
               <Marker
@@ -164,7 +165,7 @@ export default function GoogMap(center, crimeData, lat, lng) {
             );
           }
         
-          if (crimeDataIndexNum.indexOf(clusterId) !== -1 && cluster.geometry.coordinates.length === 2) {
+          if (eventDataIndexNum.indexOf(clusterId) !== -1 && cluster.geometry.coordinates.length === 2) {
           }
 
           return (
@@ -172,23 +173,23 @@ export default function GoogMap(center, crimeData, lat, lng) {
               lat={latitude}
               lng={longitude}
               id={clusterId}
-              key={cluster.properties.crimeId}
+              key={cluster.properties.eventId}
               onClick=
               {() => {
                 setInfoBox({
-                  code: cluster.properties.crimeCode,
-                  id: cluster.properties.crimeId,
-                  description: cluster.properties.crimeTitle,
-                  reportDate: cluster.properties.crimeDate,
-                  offenseDate: cluster.properties.crimeOffenseDate,
-                  location: cluster.properties.crimeLocation,
-                  locationType: cluster.properties.crimeLocationType,
-                  neighborhood: cluster.properties.crimeNeighborhood,
-                  victims: cluster.properties.crimeVictims,
-                  crimeAgainst: cluster.properties.Crime_against,
-                  firearm: cluster.properties.crimeFirearm,
-                  press: cluster.properties.crimePress,
-                  social: cluster.properties.crimeSocial
+                  code: cluster.properties.eventCode,
+                  id: cluster.properties.eventId,
+                  description: cluster.properties.eventTitle,
+                  reportDate: cluster.properties.eventDate,
+                  offenseDate: cluster.properties.eventOffenseDate,
+                  location: cluster.properties.eventLocation,
+                  locationType: cluster.properties.eventLocationType,
+                  neighborhood: cluster.properties.eventNeighborhood,
+                  victims: cluster.properties.eventVictims,
+                  eventAgainst: cluster.properties.Event_against,
+                  firearm: cluster.properties.eventFirearm,
+                  press: cluster.properties.eventPress,
+                  social: cluster.properties.eventSocial
     
                 });
               }} />
