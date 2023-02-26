@@ -99,7 +99,7 @@ export default function GoogMap(center, eventData, lat, lng) {
     zoom,
     options: { radius: 75, maxZoom: 20 },
   });
-  //called when an a tag is clicked//
+ //called when an a tag is clicked//
   useEffect(() => {
     if (selectedEvent !== null) {
       const [longitude, latitude] = selectedEvent.geometry.coordinates;
@@ -114,7 +114,7 @@ export default function GoogMap(center, eventData, lat, lng) {
         bootstrapURLKeys={{ key: process.env.REACT_APP_KEY }}
         defaultCenter={{ lat: 33.716073, lng: -84.353217 }}
         defaultZoom={12}
-        mapTypeId='satellite'
+        mapTypeId="satellite"
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
@@ -138,11 +138,11 @@ export default function GoogMap(center, eventData, lat, lng) {
           const [longitude, latitude] = cluster.geometry.coordinates;
           const { cluster: isCluster, point_count: pointCount } =
             cluster.properties;
-          const clusterId = cluster.properties.eventCode
+          const clusterId = cluster.properties.eventCode;
           if (isCluster) {
             return (
               <Marker
-                key={`cluster-${cluster.id}`}
+                key={cluster.id}
                 lat={latitude}
                 lng={longitude}>
                 <div
@@ -164,8 +164,11 @@ export default function GoogMap(center, eventData, lat, lng) {
               </Marker>
             );
           }
-        
-          if (eventDataIndexNum.indexOf(clusterId) !== -1 && cluster.geometry.coordinates.length === 2) {
+
+          if (
+            eventDataIndexNum.indexOf(clusterId) !== -1 &&
+            cluster.geometry.coordinates.length === 2
+          ) {
           }
 
           return (
@@ -174,8 +177,7 @@ export default function GoogMap(center, eventData, lat, lng) {
               lng={longitude}
               id={clusterId}
               key={cluster.properties.eventId}
-              onClick=
-              {() => {
+              onClick={() => {
                 setInfoBox({
                   code: cluster.properties.eventCode,
                   id: cluster.properties.eventId,
@@ -189,21 +191,16 @@ export default function GoogMap(center, eventData, lat, lng) {
                   eventAgainst: cluster.properties.Event_against,
                   firearm: cluster.properties.eventFirearm,
                   press: cluster.properties.eventPress,
-                  social: cluster.properties.eventSocial
-    
+                  social: cluster.properties.eventSocial,
                 });
-              }} />
-                
-        )
-            
-          })
-          
-          }
-        
+              }}
+            />
+          );
+        })}
         
       </GoogleMapReact>
       {infoBox && <InfoBox className="infoBox" info={infoBox}></InfoBox>}
-        
+      
     </div>
   );
 

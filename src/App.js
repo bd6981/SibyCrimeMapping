@@ -11,9 +11,9 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
 import Date from "./Date.js"
 import Search from './Search.js'
-import crimes from "./data.json";
-import { useMainContext } from './Hooks';
-
+import events from "./data.json";
+// import { useMainContext } from './Hooks';
+import useSWR from "swr";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -27,33 +27,40 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
   
   };
 });
-
+const fetcher = (url) => fetch(url).then((res) => res.json());
 const App = () => {
     const mapRef = useRef();
-    const [loading, setLoading] = useState(false);
-    const [renderCrime, setRenderCrime] = useState([]);
-    const { crimeData, setCrimeData, reRenderMarkers } = useMainContext();
-    useEffect(() => {
-      const fetchCrimes = async () => {
-        setLoading(true);
-        const res = await fetch("./data.json");
-        if (res.ok) {
-          const { crimes} = await res.json();
-        }
-       
-        setCrimeData( crimes);
-        setRenderCrime( crimes);
-        setLoading(false);
-      };
+    
+    const [renderEvent, setRenderEvent] = useState([]);
+    const {  setEventData, reRenderMarkers } = useMainContext();
+  useEffect(() => {
+        const { data, error, isLoading } = useSWR(
+          "./data.json",
+          fetcher
+        );
 
-      fetchCrimes(crimes);
+        if (error) return "An error has occurred.";
+        if (isLoading) return "Loading...";
+      // const fetchEvents = async () => {
+      //   setLoading(true);
+      //   const  res = await fetch("./data.json");
+      //   if (res.ok) {
+      //     const { events} = await res.json();
+      //   }
+       
+      //   setEventData( events);
+      //   setRenderEvent( events);
+      //   setLoading(false);
+      // };
+
+      // fetchEvents();
      
     }, []);
   
 
   useEffect(() => {
     if (reRenderMarkers !== null) {
-      setRenderCrime(reRenderMarkers)
+      setRenderEvent(reRenderMarkers)
     }
   }, reRenderMarkers)
   
@@ -62,67 +69,61 @@ const App = () => {
   } = theme.useToken();
   return (
     <Layout>
-      <Header className="header" style={{height: "13vh", backgroundColor: "dark grey"  }}>
+      <Header
+        className="header"
+        style={{ height: "13vh", backgroundColor: "dark grey" }}>
         <Row justify="space-between">
           <Col span={3}>
-            <Image
-            src={myImage}/>
+            <Image src={myImage} />
           </Col>
-          <Col span={2} ><Intro/></Col>
+          <Col span={2}>
+            <Intro />
+          </Col>
         </Row>
       </Header>
-     
+
       <Content
         style={{
-          padding: '0 20px',
+          padding: "0 20px",
         }}
-         theme="dark"
-      >
+        theme="dark">
         <Breadcrumb
           style={{
-            margin: '10px 0',
-          }}
-        >
+            margin: "10px 0",
+          }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
         <Layout
-         theme="dark"
+          theme="dark"
           style={{
-            padding: '20px 0',
+            padding: "20px 0",
             background: colorBgContainer,
-          }}
-        >
+          }}>
           <Sider
             style={{
               background: colorBgContainer,
-               padding: '0 15px',
+              padding: "0 15px",
             }}
             width={250}
-             theme="dark"
-          >
-           
-            <Search/>
-            
-          </Sider >
+            theme="dark">
+            <Search />
+          </Sider>
           <Content
             style={{
-              padding: '0 20px',
+              padding: "0 20px",
               height: "70vh",
             }}
-             theme="dark"
-          >
-            <GoogMap crimeData={ renderCrime } />
-            
+            theme="dark">
+            <GoogMap eventData={renderEvent} />
           </Content>
         </Layout>
       </Content>
       <Footer
         style={{
-          textAlign: 'center',
-        }}
-      >
+          textAlign: "center",
+        }}>
         <h4 className="designer">Designed and Developed By : Brittany Davis</h4>
         <div className="item2">
           <a href="http://github.com/bd6981" className="item1">
@@ -134,7 +135,7 @@ const App = () => {
             className="item1">
             <AiOutlineLinkedin size="20px" />
           </a>
-          </div>
+        </div>
       </Footer>
     </Layout>
   );

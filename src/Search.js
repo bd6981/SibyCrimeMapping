@@ -1,26 +1,24 @@
-import { AudioOutlined } from "@ant-design/icons";
-import { Input, Space } from "antd";
+
 import React, { useRef, useState, useEffect } from "react";
 import { useMainContext } from "./Hooks.js";
 import './Map.css'
-var event = require('./data.json')
 
-function Search(props) {
-  const [storeSelection, setStoreSelection] = useState("All");
+
+function Search(props,  index) {
+ 
   const { eventData, setSelectedEvent, setReRenderMarkers } = useMainContext();
-  const [matchEvent, setMatchEvent] = useState(eventData);
-  const [value, setValue] = useState("");
-
-  
   const searchBox = useRef();
   const optionBox = useRef();
+  const [matchEvent, setMatchEvent] = useState(eventData);
+   const [storeSelection, setStoreSelection] = useState("All");
+
 
 
     const filterEventData = eventData => {  
-      let filteredEventData = [];
+      let filteredEventData = [...eventData];
       if (storeSelection !== "All") {
-        filteredEventData = filteredEventData.filter(
-          (event) => event.title === storeSelection
+        filteredEventData = filteredEventData.filter
+          (event => event.title === storeSelection
         );
       }
      
@@ -29,33 +27,34 @@ function Search(props) {
 //////////event handler on text input 2 arguments /////////////////////
   const userSearch = (searchQuery, eventData) => {
     let eventMatch = [];
-    let filteredEventData = filterEventData(eventData)
+    let filterdEventData = filterEventData(eventData)
     //---------------------------------------------------------------------//
-    if (searchQuery.length > 0 && eventData) {
+    if (searchQuery.length > 0 && filterdEventData) {
       for (const event in eventData) {
-        let eventTitle = eventData[event].title.toLowerCase();
+        let eventTitle = filterdEventData[event].title.toLowerCase();
         if (eventTitle.indexOf(searchQuery) !== -1) {
           //event match will hold all matched data from loop//
-          eventMatch.push(eventData[event]);
+          eventMatch.push(filterdEventData[event]);
         }
       }
 ////////-------typed in something but didn't match--------//////////
     
       if (eventMatch.length === 0) {
         ///copying format from browser:formatted to retreve data from json///
-        eventMatch = [{ title: "no results", properties: [{ title: " "}] }];
+        eventMatch = [{ title: "no results", properties: [{ title: ""}] }];
       }
       //store event match in this state//
       setMatchEvent(eventMatch);
     } else {
       //clears data from searchbox//
-      setMatchEvent([eventData]);
+      setMatchEvent(filterdEventData);
     }
   }
+ 
   useEffect(() => {
-    let filteredEventData = filterEventData(eventData);
-    setReRenderMarkers (filteredEventData);
-    userSearch(searchBox.current.value.toLowerCase(), filteredEventData);
+    let filterdEventData = filterEventData(eventData);
+    setReRenderMarkers (filterdEventData);
+    userSearch(searchBox.current.value.toLowerCase(), filterdEventData);
 
 
   },
@@ -145,7 +144,7 @@ function Search(props) {
       <section className="search-container">
         <input
           type="text"
-          ref={searchBox}
+          
           // value={value}
        
           placeholder={"Search"}
@@ -158,7 +157,7 @@ function Search(props) {
               }
             }, 300);
           }}
-          // ref={searchBox}
+          ref={searchBox}
         />
       </section>
 {/*-------------- /////////////Search box end//////////// --------------------*/}
@@ -170,9 +169,9 @@ function Search(props) {
             <th style={{ width: "60%" }}>Location</th>
             <th style={{ width: "60%" }}>Date</th>
           </tr>
-          {matchEvent.map((ev) => {
+          {matchEvent.map(ev => {
             return (
-              <tr key={ev.id}>
+              <tr key={ev.toString} id={ev.id}>
                 <td>{ev.title}</td>
                 <td>{ev.title}</td>
                 {ev.title ? (
@@ -182,7 +181,7 @@ function Search(props) {
                       href="#"
                       //on click will take user to selected event on map//
                       onClick={() => {
-                        setSelectedEvent();
+                        setSelectedEvent(ev);
                       }}>
                       click!
                     </a>

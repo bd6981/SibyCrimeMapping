@@ -9,7 +9,7 @@ export function ContextProvider({ children }) {
   const [eventData, setEventData] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
-  const [authorized, setAuthorized] = useState(null);
+ 
 
   const value = {
     eventData,
@@ -18,8 +18,7 @@ export function ContextProvider({ children }) {
     setSelectedEvent,
     reRenderMarkers,
     setReRenderMarkers,
-    authorized,
-    setAuthorized,
+
   };
   
   return (<mainContext.Provider value={value}>{children}</mainContext.Provider>)
