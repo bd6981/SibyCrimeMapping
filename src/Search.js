@@ -37,8 +37,9 @@ function Search(props,  index) {
           eventMatch.push(filterdEventData[event]);
         }
       }
+      console.log(eventData)
 ////////-------typed in something but didn't match--------//////////
-    
+    console.log(userSearch)
       if (eventMatch.length === 0) {
         ///copying format from browser:formatted to retreve data from json///
         eventMatch = [{ title: "no results", properties: [{ title: ""}] }];
@@ -183,8 +184,10 @@ function Search(props,  index) {
                       onClick={() => {
                         setSelectedEvent(ev);
                       }}>
+                      
                       click!
                     </a>
+                   
                   </td>
                 ) : (
                   <td></td>

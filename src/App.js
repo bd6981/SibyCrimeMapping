@@ -5,15 +5,12 @@ import GoogMap from "./GoogMap";
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import Intro from "./Intro"
-// import {Image} from "semantic-ui-react";
-// import "semantic-ui-css/semantic.min.css";
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
-import Date from "./Date.js"
-import Search from './Search.js'
+import Search from './Search.js';
 import events from "./data.json";
-// import { useMainContext } from './Hooks';
-import useSWR from "swr";
+import { useMainContext } from './Hooks';
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -27,35 +24,34 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
   
   };
 });
-const fetcher = (url) => fetch(url).then((res) => res.json());
+// const fetcher = (url) => fetch(url).then((res) => res.json());
 const App = () => {
-    const mapRef = useRef();
+  const mapRef = useRef();
+  const [loading, setLoading ] = useState()
     
     const [renderEvent, setRenderEvent] = useState([]);
-    const {  setEventData, reRenderMarkers } = useMainContext();
-  useEffect(() => {
-        const { data, error, isLoading } = useSWR(
-          "./data.json",
-          fetcher
-        );
+    const { setEventData, reRenderMarkers } = useMainContext({});
+useEffect(() => {
+  const fetchEvents = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("./data.json");
+      if (res.ok) {
+        const { events } = await res.json();
+        setEventData(events);
+        setRenderEvent(events);
+      } else {
+        throw new Error("Failed to fetch events");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (error) return "An error has occurred.";
-        if (isLoading) return "Loading...";
-      // const fetchEvents = async () => {
-      //   setLoading(true);
-      //   const  res = await fetch("./data.json");
-      //   if (res.ok) {
-      //     const { events} = await res.json();
-      //   }
-       
-      //   setEventData( events);
-      //   setRenderEvent( events);
-      //   setLoading(false);
-      // };
-
-      // fetchEvents();
-     
-    }, []);
+  fetchEvents();
+}, []);
   
 
   useEffect(() => {
