@@ -10,10 +10,6 @@ import { useMainContext } from "./Hooks";
 import LocateMarker from './LocateMarker.js'
 import Date from "./Date.js";
 
-
-
-
-
 const Marker = ({ children }) => children;
 
 export default function GoogMap(center, eventData, lat, lng) {
