@@ -9,7 +9,7 @@ import InfoBox from "./InfoBox";
 import { useMainContext } from "./Hooks";
 import LocateMarker from './LocateMarker.js'
 import Date from "./Date.js";
-import Search from "./Search.js";
+
 
 
 
@@ -66,7 +66,7 @@ export default function GoogMap(center, eventData, lat, lng) {
  
 
   //geo feature
-  const points = events.map((event) => ({
+  const points = events && events.map((event) => ({
     type: "Feature",
 
     properties: {
@@ -200,7 +200,7 @@ export default function GoogMap(center, eventData, lat, lng) {
         
       </GoogleMapReact>
       {infoBox && <InfoBox className="infoBox" info={infoBox}></InfoBox>}
-      
+     
     </div>
   );
 

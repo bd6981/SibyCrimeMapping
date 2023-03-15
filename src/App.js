@@ -7,7 +7,7 @@ import { AiOutlineLinkedin } from "react-icons/ai";
 import Intro from "./Intro"
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
-import Search from './Search.js';
+// import Search from './Search.jsx';
 import events from "./data.json";
 import { useMainContext } from './Hooks';
 
@@ -97,15 +97,15 @@ useEffect(() => {
             padding: "20px 0",
             background: colorBgContainer,
           }}>
-          <Sider
+          {/* <Sider
             style={{
               background: colorBgContainer,
               padding: "0 15px",
             }}
-            width={250}
+            width={10}
             theme="dark">
-            <Search />
-          </Sider>
+            {/* <Search /> */}
+          {/* </Sider>  */}
           <Content
             style={{
               padding: "0 20px",
