@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import myImage from './img1.png'
-import Head from "./Head";
 import GoogMap from "./GoogMap";
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
@@ -12,7 +11,7 @@ import events from "./data.json";
 import { useMainContext } from './Hooks';
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
@@ -88,7 +87,6 @@ useEffect(() => {
             margin: "10px 0",
           }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
         <Layout
@@ -96,20 +94,13 @@ useEffect(() => {
           style={{
             padding: "20px 0",
             background: colorBgContainer,
+            backgroundColor: "#001529",
           }}>
-          {/* <Sider
-            style={{
-              background: colorBgContainer,
-              padding: "0 15px",
-            }}
-            width={10}
-            theme="dark">
-            {/* <Search /> */}
-          {/* </Sider>  */}
           <Content
             style={{
               padding: "0 20px",
-              height: "70vh",
+              height: "66vh",
+             
             }}
             theme="dark">
             <GoogMap eventData={renderEvent} />
@@ -119,6 +110,9 @@ useEffect(() => {
       <Footer
         style={{
           textAlign: "center",
+          backgroundColor: "#001529",
+          height: "7vh",
+          placeContent:"end"
         }}>
         <h4 className="designer">Designed and Developed By : Brittany Davis</h4>
         <div className="item2">

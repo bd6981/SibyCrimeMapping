@@ -4,18 +4,15 @@
   display: flex;
   height: 30vh;
   width: 100vw;
-  position:fixed;
-/* margin-left: 30%; */
+  position: fixed;
   place-items: right;
   justify-content: right;
   align-items: right;
-  /* margin: 50px; */
 }
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, 500;
 }
-
 .cluster-marker {
   color: white;
   background: rgba(22, 140, 280, 240);
@@ -30,19 +27,17 @@ body {
 }
 .infoBox {
   position: absolute;
-  top: 202px;
+  top: 190px;
   right: 3%;
   width: 400px;
   min-height: 100px;
   padding: 20px;
-  /* background-color: black; */
   border-radius: 10px;
   font-size: 10px;
   font-size: 18px;
   color: black;
   font-family: "Poppins", sans-serif, 500;
   backdrop-filter: blur(60px);
-
   border-color: black;
   border: 3px;
   text-align: left;
@@ -81,25 +76,18 @@ header {
   font-size: 2rem;
   position: relative;
 }
-
 .search-container{
   margin: 10px 0 20px 0;
   display: flex;
   justify-content: center;
-  
-
 }
 .search-container>*{
   display: inline-block;
-  
-
 }
 .search-container p{
   margin: 0 20px 0 20px;
-  font-size: 15px;
-  
+  font-size: 15px; 
 }
-
 button , input, select, textarea{
   font-family: inherit;
   font-size: 15px;
@@ -109,43 +97,34 @@ button , input, select, textarea{
   outline: none;
   width: 11vw;
   max-width: 500px;
-  /* margin: px 0px 5 0 ; */
   padding: 0 0 0 10px;
   font-size: 15px;
   align-items: center;
   height: 5vh;
-  
-
 }
 .search-table{
   margin: 0 auto;
- margin-top: 50vh;
+  margin-top: 50vh;
   table-layout: fixed;
   border-collapse: 100%;
   width: 95vw;
-  
   text-align: center;
   margin-left: .3vw;
-
 }
 .search-table th{
   background-color: rgb(16, 17, 22);
   color:#e6ecec
-  
 }
 .search-table tr:nth-child(even){
   background-color: #cccccc;
 }
 .search-table th, td{
   padding: 15px;
-
 }
 .option-container{
   width: 11vw;
   height: 4vh;
   text-align: center;
   border-radius: 2px;
-  border-color: black;
-  
-  
+  border-color: black; 
 }

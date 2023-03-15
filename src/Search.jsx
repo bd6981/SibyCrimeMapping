@@ -207,3 +207,16 @@ export default Search;
 //   );
 // }
 // export default Search;
+   {
+     /* <Sider
+            style={{
+              background: colorBgContainer,
+              padding: "0 15px",
+            }}
+            width={10}
+            theme="dark">
+            {/* <Search /> */
+   }
+   {
+     /* </Sider>  */
+   }
