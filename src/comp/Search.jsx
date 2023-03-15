@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useMainContext } from "./Hooks.js";
+import { useMainContext } from "../Hooks.js";
 import "./Map.css";
 
 // function Search(props) {

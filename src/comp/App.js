@@ -1,64 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react'
-import myImage from './img1.png'
+import React, { useState, useEffect, useRef } from "react";
+import myImage from "./img1.png";
 import GoogMap from "./GoogMap";
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
-import Intro from "./Intro"
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from 'antd';
+import Intro from "./Intro";
+import {
+  LaptopOutlined,
+  NotificationOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Breadcrumb, Layout, Menu, theme, Image, Row, Col } from "antd";
 // import Search from './Search.jsx';
-import events from "./data.json";
-import { useMainContext } from './Hooks';
-
+import events from "../data.json";
+import { useMainContext } from "../Hooks";
+import "./App.css";
 
 const { Header, Content, Footer } = Layout;
 
-
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  return {
-    key: `find${key}`,
-    icon: React.createElement(icon),
-    label: `searchNav ${key}`,
-  
-  };
-});
+const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+  (icon, index) => {
+    const key = String(index + 1);
+    return {
+      key: `find${key}`,
+      icon: React.createElement(icon),
+      label: `searchNav ${key}`,
+    };
+  }
+);
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 const App = () => {
   const mapRef = useRef();
-  const [loading, setLoading ] = useState()
-    
-    const [renderEvent, setRenderEvent] = useState([]);
-    const { setEventData, reRenderMarkers } = useMainContext({});
-useEffect(() => {
-  const fetchEvents = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("./data.json");
-      if (res.ok) {
-        const { events } = await res.json();
-        setEventData(events);
-        setRenderEvent(events);
-      } else {
-        throw new Error("Failed to fetch events");
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [loading, setLoading] = useState();
 
-  fetchEvents();
-}, []);
-  
+  const [renderEvent, setRenderEvent] = useState([]);
+  const { setEventData, reRenderMarkers } = useMainContext({});
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("./data.json");
+        if (res.ok) {
+          const { events } = await res.json();
+          setEventData(events);
+          setRenderEvent(events);
+        } else {
+          throw new Error("Failed to fetch events");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   useEffect(() => {
     if (reRenderMarkers !== null) {
-      setRenderEvent(reRenderMarkers)
+      setRenderEvent(reRenderMarkers);
     }
-  }, reRenderMarkers)
-  
+  }, reRenderMarkers);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -100,7 +103,6 @@ useEffect(() => {
             style={{
               padding: "0 20px",
               height: "66vh",
-             
             }}
             theme="dark">
             <GoogMap eventData={renderEvent} />
@@ -112,7 +114,7 @@ useEffect(() => {
           textAlign: "center",
           backgroundColor: "#001529",
           height: "7vh",
-          placeContent:"end"
+          placeContent: "end",
         }}>
         <h4 className="designer">Designed and Developed By : Brittany Davis</h4>
         <div className="item2">
@@ -131,4 +133,3 @@ useEffect(() => {
   );
 };
 export default App;
-

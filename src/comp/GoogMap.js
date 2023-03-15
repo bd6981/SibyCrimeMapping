@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./Map.css";
-import events from "./data.json";
+import events from "../data.json";
 import { Icon } from "@iconify/react";
 import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
 import InfoBox from "./InfoBox";
-import { useMainContext } from "./Hooks";
-import LocateMarker from './LocateMarker.js'
+import { useMainContext } from "../Hooks";
+import LocateMarker from "./LocateMarker.js";
 import Date from "./Date.js";
 
 const Marker = ({ children }) => children;
@@ -19,74 +19,74 @@ export default function GoogMap(center, eventData, lat, lng) {
   const [zoom, setZoom] = useState(10);
   const [infoBox, setInfoBox] = useState(null);
 
-
-//JSON index
+  //JSON index
   const eventDataIndex = {
-    '09A': "Murder & Nonnegligent Manslaughter",
-    '100': "Kidnapping/Abduction",
-    '11A': "Rape",
-    '11B': "Sodomy",
-    '11D': "Fondling",
-    '120': "Robbery",
+    "09A": "Murder & Nonnegligent Manslaughter",
+    100: "Kidnapping/Abduction",
+    "11A": "Rape",
+    "11B": "Sodomy",
+    "11D": "Fondling",
+    120: "Robbery",
     "13A": "Aggravated Assault",
     "13B": "Simple Assault",
     "13C": "Intimidation",
-    '220': "Burglary/Breaking & Entering",
+    220: "Burglary/Breaking & Entering",
     "23C": "Shoplifting",
     "23D": "Theft From Building",
     "23E": "Theft From Coin-Operated Machine or Device",
     "23F": "Theft From Motor Vehicle",
     "23G": "Theft of Motor Vehicle Parts or Accessories",
     "23H": "All Other Larceny",
-    '240': "Motor Vehicle Theft",
-    '250': "Counterfeiting/Forgery",
+    240: "Motor Vehicle Theft",
+    250: "Counterfeiting/Forgery",
     "26A": "False Pretenses/Swindle/Confidence Game",
     "26B": "Credit Card/Automated Teller Machine Fraud",
     "26C": "Impersonation",
     "26D": "Welfare Fraud",
     "26E": "Wire Fraud",
     "26F": "Identity theft",
-    '270': "Embezzlement",
-    '280': "Stolen Property Offenses",
-    '290': "Destruction/Damage/Vandalism of Property",
+    270: "Embezzlement",
+    280: "Stolen Property Offenses",
+    290: "Destruction/Damage/Vandalism of Property",
     "35A": "Drug/Narcotic Violations",
     "35B": "Drug Equipment Violations",
     "39B": "Operating/Promoting/Assisting Gambling",
-    '370': "Pornography/Obscene Material",
-    '520': "Weapon Law Violations",
-    '720': "Animal Cruelty",
+    370: "Pornography/Obscene Material",
+    520: "Weapon Law Violations",
+    720: "Animal Cruelty",
   };
   //array of keys
   let eventDataIndexNum = Object.keys(eventDataIndex);
   eventDataIndexNum = eventDataIndexNum.map((index) => Number(index));
- 
 
   //geo feature
-  const points = events && events.map((event) => ({
-    type: "Feature",
+  const points =
+    events &&
+    events.map((event) => ({
+      type: "Feature",
 
-    properties: {
-      cluster: false,
-      eventId: event.report_number,
-      eventCode: event.code,
-      eventTitle: event.description,
-      eventDate: event.report_date,
-      eventOffenseDate: event.offense_start,
-      eventDay: event.week_day,
-      eventLocation: event.location,
-      eventLocationType: event.location_type,
-      eventNeighborhood: event.neighborhood,
-      eventVictims: event.victims,
-      eventEvent_against: event.event_against,
-      eventFirearm: event.firearm_involved,
-      eventPress: event.press,
-      eventSocial: event.social,
-    },
-    geometry: {
-      type: "Point",
-      coordinates: [parseFloat(event.longitude), parseFloat(event.latitude)],
-    },
-  }));
+      properties: {
+        cluster: false,
+        eventId: event.report_number,
+        eventCode: event.code,
+        eventTitle: event.description,
+        eventDate: event.report_date,
+        eventOffenseDate: event.offense_start,
+        eventDay: event.week_day,
+        eventLocation: event.location,
+        eventLocationType: event.location_type,
+        eventNeighborhood: event.neighborhood,
+        eventVictims: event.victims,
+        eventEvent_against: event.event_against,
+        eventFirearm: event.firearm_involved,
+        eventPress: event.press,
+        eventSocial: event.social,
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [parseFloat(event.longitude), parseFloat(event.latitude)],
+      },
+    }));
 
   //cluster
   const { clusters, supercluster } = useSupercluster({
@@ -95,7 +95,7 @@ export default function GoogMap(center, eventData, lat, lng) {
     zoom,
     options: { radius: 75, maxZoom: 20 },
   });
- //called when an a tag is clicked//
+  //called when an a tag is clicked//
   useEffect(() => {
     if (selectedEvent !== null) {
       const [longitude, latitude] = selectedEvent.geometry.coordinates;
@@ -137,10 +137,7 @@ export default function GoogMap(center, eventData, lat, lng) {
           const clusterId = cluster.properties.eventCode;
           if (isCluster) {
             return (
-              <Marker
-                key={cluster.id}
-                lat={latitude}
-                lng={longitude}>
+              <Marker key={cluster.id} lat={latitude} lng={longitude}>
                 <div
                   className="cluster-marker"
                   style={{
@@ -193,11 +190,8 @@ export default function GoogMap(center, eventData, lat, lng) {
             />
           );
         })}
-        
       </GoogleMapReact>
       {infoBox && <InfoBox className="infoBox" info={infoBox}></InfoBox>}
-     
     </div>
   );
-
 }
