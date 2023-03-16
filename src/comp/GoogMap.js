@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
-import "./Map.css";
+// import "./Map.css";
 import events from "../data.json";
 import { Icon } from "@iconify/react";
 import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
