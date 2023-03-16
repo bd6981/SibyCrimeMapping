@@ -27,8 +27,8 @@ body {
 }
 .infoBox {
   position: absolute;
-  top: 190px;
-  right: 3%;
+  top: 175px;
+  right: 5%;
   width: 400px;
   min-height: 100px;
   padding: 20px;

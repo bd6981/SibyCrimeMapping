@@ -105,7 +105,7 @@ export default function GoogMap(center, eventData, lat, lng) {
   }, [selectedEvent]);
 
   return (
-    <div style={{ height: "66vh", width: "100%" }}>
+    <div style={{ height: "64vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_KEY }}
         defaultCenter={{ lat: 33.716073, lng: -84.353217 }}

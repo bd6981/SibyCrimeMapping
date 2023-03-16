@@ -102,20 +102,19 @@ const App = () => {
           <Content
             style={{
               padding: "0 20px",
-              height: "66vh",
+              height: "64vh",
             }}
             theme="dark">
             <GoogMap eventData={renderEvent} />
           </Content>
         </Layout>
       </Content>
-      {/* <div class="page-container">
-        <div class="content-wrap"> */}
+ 
 
       <Footer style={{ backgroundColor: "#001529", margin: '0 auto' }}>
         <h4
           className="designer"
-          style={{ color: "white", marginBottom: "1px" }}>
+          style={{ color: "white", marginBottom: "1px", marginTop: '1px' }}>
           Designed and Developed By : Brittany Davis
         </h4>
         <div className="item2" style={{ marginBottom: "10px" }}>
