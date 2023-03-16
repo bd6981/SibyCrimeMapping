@@ -109,26 +109,32 @@ const App = () => {
           </Content>
         </Layout>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-          backgroundColor: "#001529",
-          height: "7vh",
-          placeContent: "end",
-        }}>
-        <h4 className="designer">Designed and Developed By : Brittany Davis</h4>
-        <div className="item2">
+      {/* <div class="page-container">
+        <div class="content-wrap"> */}
+
+      <Footer style={{ backgroundColor: "#001529", margin: '0 auto' }}>
+        <h4
+          className="designer"
+          style={{ color: "white", marginBottom: "1px" }}>
+          Designed and Developed By : Brittany Davis
+        </h4>
+        <div className="item2" style={{ marginBottom: "10px" }}>
           <a href="http://github.com/bd6981" className="item1">
-            <BsGithub size="20px" />
+            <BsGithub size="20px" style={{ color: "white" }} />
           </a>
 
           <a
             href="http://www.linkedin.com/in/brittany~davis/"
             className="item1">
-            <AiOutlineLinkedin size="20px" />
+            <AiOutlineLinkedin
+              size="20px"
+              style={{ color: "white", marginLeft: "5px" }}
+            />
           </a>
         </div>
       </Footer>
+      {/* </div>
+        </div> */}
     </Layout>
   );
 };
