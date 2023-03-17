@@ -36,18 +36,22 @@ import React from 'react';
 import robberMask from '@iconify/icons-mdi/robber-mask';
 import { Icon } from '@iconify/react';
 import './Map.css'
-
+import robberIcon from "@iconify/icons-game-icons/robber";
+import shotgunRounds from '@iconify/icons-game-icons/shotgun-rounds';
+import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
+import gameDie from "@iconify/icons-fluent-emoji/game-die";
+import zonePersonAlertSharp from "@iconify/icons-material-symbols/zone-person-alert-sharp";
 
 function LocateMarker ({lat, lng, onClick, id}) {
     let renderIcon = null;
-    if (id === '09A' ){ 
-        renderIcon = robberMask;
+    if (id === '09A') {
+        renderIcon = shotgunRounds;
         //;Murder & Nonnegligent Manslaughter
-    }else if (id === 100 ){
-        renderIcon = robberMask
+    } else if (id === 100) {
+        renderIcon = shotgunRounds
         //;Kidnapping/Abduction
-    }else if (id === '11A'){
-        renderIcon = robberMask
+    } else if (id === '11A') {
+        renderIcon = zonePersonAlertSharp style: {{ color = "#c8b50b" }}
         //;Rape
     }else if (id === '11B' ){
         renderIcon = robberMask
@@ -62,40 +66,40 @@ function LocateMarker ({lat, lng, onClick, id}) {
         renderIcon = robberMask
         //;Aggravated Assault
     }else if (id === '13B' ){
-        renderIcon = robberMask
+        renderIcon = peopleRobbery
         //;Simple Assault
     }else if (id === '13C'){
-        renderIcon = robberMask
+        renderIcon = peopleRobbery
         //;Intimidation
     }else if (id === '220' ){
-        renderIcon = robberMask
+        renderIcon = peopleRobbery
         //;Burglary/Breaking & Entering
     }else if (id === '23C'){
         renderIcon = robberMask
         //;Shoplifting
     }else if (id === '23D' ){
-        renderIcon = robberMask
+        renderIcon = robberMask;
         //;Theft From Building
     }else if (id === '23E' ){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;Theft From Coin-Operated Machine or Device
     }else if (id === '23F' ){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;Theft From Motor Vehicle
     }else if (id === '23G' ){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;Theft of Motor Vehicle Parts or Accessories
     }else if (id === '23H' ){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;All Other Larceny
     }else if (id === '240'){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;Motor Vehicle Theft
     }else if (id === '250' ){
-        renderIcon = robberMask
+        renderIcon = robberIcon;
         //;Counterfeiting/Forgery
     }else if (id === '26A' ){
-        renderIcon = robberMask
+        renderIcon = gameDie;
         //;False Pretenses/Swindle/Confidence Game
     }else if (id === '26B' ){
         renderIcon = robberMask

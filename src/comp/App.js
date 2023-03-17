@@ -71,10 +71,29 @@ const App = () => {
         className="header"
         style={{ height: "13vh", backgroundColor: "dark grey" }}>
         <Row justify="space-between">
-          <Col span={3}>
-            <Image src={myImage} />
+          <Col
+            className="image-grid"
+            position="fixed"
+            alignItem="center"
+            justify-content="center">
+            <div className="responsive-image">
+              <Image
+                className="icon"
+                src={myImage}
+                height="14.2vh"
+                justify-content="center"
+                display="flex"
+                align-item="center"
+                align-content="center"
+              />
+            </div>
           </Col>
-          <Col span={2}>
+          <Col
+            height="5vh"
+            justify-content="center"
+            display="flex"
+            align-item="center"
+            align-content="center">
             <Intro />
           </Col>
         </Row>
@@ -109,12 +128,11 @@ const App = () => {
           </Content>
         </Layout>
       </Content>
- 
 
-      <Footer style={{ backgroundColor: "#001529", margin: '0 auto' }}>
+      <Footer style={{ backgroundColor: "#001529", margin: "0 auto" }}>
         <h4
           className="designer"
-          style={{ color: "white", marginBottom: "1px", marginTop: '1px' }}>
+          style={{ color: "white", marginBottom: "1px", marginTop: "1px" }}>
           Designed and Developed By : Brittany Davis
         </h4>
         <div className="item2" style={{ marginBottom: "10px" }}>
@@ -132,8 +150,6 @@ const App = () => {
           </a>
         </div>
       </Footer>
-      {/* </div>
-        </div> */}
     </Layout>
   );
 };

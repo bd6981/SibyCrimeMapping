@@ -63,5 +63,51 @@ Footer {
     text-align: center;
     box-sizing: border-box;
      justify-content: center;
+     display: 'flex';
     
 }
+
+/* .image-grid {
+display: grid;
+    grid-template-columns: repeat(6, 4fr);
+    grid-gap: 1rem;
+    padding: 1rem;
+    position: absolute;
+}
+
+.responsive-image {
+    position: relative;
+   padding: 1rem;
+     top: -2rem; /* Adjust the distance from the top as needed */
+    /* right: 3rem; /* Adjust the distance from the right as needed */
+
+
+/* Style the icons */
+/* Image {
+    position: absolute;
+    size: 50px;
+  
+    width: 100px; /* Adjust the icon size as needed */
+    /* height: auto;
+} */ 
+
+
+ /* @media screen and (min-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(9px, 2, 4fr); /* 3 columns on larger screens */
+     /* }
+    Image {
+    position: fixed;
+  font-size: 24px;
+    width: 40px; /* Adjust the icon size as needed */
+    /* height: auto;
+} */ 
+
+
+
+/* Media query for even larger screens (e.g., desktops) */
+ /* @media screen and (min-width: 1200px) {
+    .image-grid {
+        grid-template-columns: repeat( 1px, 2. 4fr); /* 4 columns on even larger screens */
+    /* }
+}   */ 

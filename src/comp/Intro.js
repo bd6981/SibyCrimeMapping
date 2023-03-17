@@ -16,7 +16,7 @@ const Intro = () => {
       <Button
         type="primary"
         onClick={showModal}
-        style={{ width: "8vw", alighnText: "right" }}>
+        style={{ alignText: "center", }}>
         Need Help?
       </Button>
       <Modal
