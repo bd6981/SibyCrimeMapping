@@ -128,3 +128,17 @@ button , input, select, textarea{
   border-radius: 2px;
   border-color: black; 
 }
+.button {
+   color: rgb(144, 223, 17);
+  background: grey;
+  opacity: 80%;
+  font-size: 12px;
+  border-radius: 50%;
+ 
+  border: 2px solid rgba(22, 140, 280, 240);
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}

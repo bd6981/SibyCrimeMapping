@@ -42,6 +42,7 @@ import peopleRobbery from "@iconify/icons-fa6-solid/people-robbery";
 import gameDie from "@iconify/icons-fluent-emoji/game-die";
 import zonePersonAlertSharp from "@iconify/icons-material-symbols/zone-person-alert-sharp";
 
+
 function LocateMarker ({lat, lng, onClick, id}) {
     let renderIcon = null;
     if (id === '09A') {
@@ -51,7 +52,7 @@ function LocateMarker ({lat, lng, onClick, id}) {
         renderIcon = shotgunRounds
         //;Kidnapping/Abduction
     } else if (id === '11A') {
-        renderIcon = zonePersonAlertSharp style: {{ color = "#c8b50b" }}
+        renderIcon = zonePersonAlertSharp
         //;Rape
     }else if (id === '11B' ){
         renderIcon = robberMask
@@ -146,8 +147,8 @@ function LocateMarker ({lat, lng, onClick, id}) {
     }
     return (
         <div onClick = {onClick} className= 'iconClick'>
-            <Icon icon={renderIcon} className= "custom"/>
-            </div>
+            <button className='button'><Icon icon={renderIcon} height="30px" className= "custom"/>
+            </button></div>
     );
 }
 export default LocateMarker;
