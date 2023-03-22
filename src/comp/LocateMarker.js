@@ -147,7 +147,7 @@ function LocateMarker ({lat, lng, onClick, id}) {
     }
     return (
         <div onClick = {onClick} className= 'iconClick'>
-            <button className='button'><Icon icon={renderIcon} height="30px" className= "custom"/>
+            <button className='button' ><Icon icon={renderIcon} height="30px" className= "custom"/>
             </button></div>
     );
 }

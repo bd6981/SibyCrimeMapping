@@ -55,21 +55,7 @@ const Intro = () => {
               incident, the exact location, and any additional information
               available, such as a case number or description of the suspect.
             </ul>
-            <ul>
-              <h5>Filter Crime Data:</h5>
-              You can filter the crime data displayed on the map using the
-              filter options provided on the website. Filters may include date
-              ranges, crime categories, or specific neighborhoods. Adjust the
-              filters as desired to view only the crime incidents that match
-              your criteria.
-            </ul>
-            <ul>
-              <h5>View Crime Statistics:</h5>
-              In addition to the interactive map, our website offers crime
-              statistics for Atlanta. Navigate to the "Crime Statistics" section
-              to view charts and graphs showing crime trends, comparisons
-              between neighborhoods, and other insightful data.
-            </ul>
+            
           </li>
           We hope that Siby: the Atlanta Crime Mapping Website provides you with
           valuable insights into crime patterns and trends in the city. By using
