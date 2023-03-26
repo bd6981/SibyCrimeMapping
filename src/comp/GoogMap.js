@@ -9,10 +9,11 @@ import InfoBox from "./InfoBox";
 import { useMainContext } from "../Hooks";
 import LocateMarker from "./LocateMarker.js";
 import Date from "./Date.js";
+import initAutocomplete from "./Places.js";
 
 const Marker = ({ children }) => children;
 
-export default function GoogMap(center, eventData, lat, lng) {
+export default function GoogMap(center, eventData, lat, lng, google) {
   const { selectedEvent } = useMainContext();
   const mapRef = useRef();
   const [bounds, setBounds] = useState(null);
@@ -103,6 +104,13 @@ export default function GoogMap(center, eventData, lat, lng) {
       mapRef.current.setZoom(10);
     }
   }, [selectedEvent]);
+  // const mapOptions = {
+  //   center: { lat: 33.716073, lng: -84.353217 },
+  //   defaultZoom: 12,
+  //   mapTypeId: "satellite"
+
+  // };
+  // let map = new google.maps.Map(document.getElementById('map'), mapOptions)
 
   return (
     <div style={{ height: "64vh", width: "100%" }}>
@@ -192,6 +200,7 @@ export default function GoogMap(center, eventData, lat, lng) {
         })}
       </GoogleMapReact>
       {infoBox && <InfoBox className="infoBox" info={infoBox}></InfoBox>}
+      <initAutocomplete />
     </div>
   );
 }

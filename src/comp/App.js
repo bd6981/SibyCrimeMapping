@@ -38,7 +38,7 @@ const App = () => {
     const fetchEvents = async () => {
       setLoading(true);
       try {
-        const res = await fetch("./data.json");
+        const res = await fetch("./api");
         if (res.ok) {
           const { events } = await res.json();
           setEventData(events);
